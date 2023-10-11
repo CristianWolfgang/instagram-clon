@@ -11,5 +11,6 @@ font-size: ${props => props.value ? ".65rem" : ".75rem"};
 line-height: ${props => props.value ? ".5rem" : "1.5rem"};
 transition: font-size linear .1s,
 line-height linear .1s;
+pointer-events:none;
 `;
 export default InputPlaceholder;

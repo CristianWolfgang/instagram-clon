@@ -6,7 +6,10 @@ import LoginFooter from "./components/login_footer";
 import LoginForm from "./components/login_form";
 import Or from "./components/or_container";
 import RegisterContainer from "./components/register_link";
-import Smartphone from "./Smartphone";
+import Smartphone from "./components/smartphone";
+import { useState } from "react";
+
+import LoginProvider from './contexts/login/Provider'
 
 const Container = styled.div`
     @media only screen and (min-width:876px){
@@ -26,12 +29,17 @@ const Container = styled.div`
     }
 `;// borders
 const Login = () => {
-
+    const mediaQuery = matchMedia("(min-width:876px)"),
+        [queryMatches, setQueryMatches] = useState(mediaQuery.matches);
+    window.onresize = e => {
+        setQueryMatches(mediaQuery.matches);
+    };
+    
     return (
-        <>
+        <LoginProvider>
             <Container>
                 <Container1>
-                    <Smartphone/>
+                    {queryMatches&&<Smartphone/>}
                 </Container1>
                 <Container1>
                     <Container2 $marginTop="3rem" $border>
@@ -51,31 +59,7 @@ const Login = () => {
                 </Container1>
             </Container>
             <LoginFooter/>
-            {/* <Container>
-                <Container1 >
-                    <Smartphone />
-                </Container1>
-
-                <Container1>
-                    <Container1 $media>
-                        MEMEA
-                        <Container2 $marginTop="7vh">
-                            <InstagramLogo />
-                            <LoginForm />
-                            <Or />
-                            <LoginAlts />
-                        </Container2>
-                        <Container2 $marginTop="2vh">
-                            <RegisterContainer />
-                        </Container2>
-                        <DownloadApp />
-                    </Container1>
-
-                </Container1>
-
-            </Container>
-            <LoginFooter /> */}
-        </>
+        </LoginProvider>
 
 
     )

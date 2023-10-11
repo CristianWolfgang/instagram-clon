@@ -8,6 +8,6 @@ const ShowPasswordBtn = styled.button`
     border:0;
     color:var(--ig-secondary-button);
     opacity:.5;
-    
+    cursor:pointer;
 `;
 export default ShowPasswordBtn;

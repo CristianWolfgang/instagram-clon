@@ -8,10 +8,13 @@
     --ig-primary-button:rgb( 0, 149, 246);
     --web-always-white: rgb(255, 255, 255);
     --fb-color:#385185;
-
+    --ig-error:rgb(237, 73, 86);
 }
 html{
     font-family: var(--font-family-system);
+}
+html,body{
+    overflow-x: hidden;
 }
 *:focus {
     outline: none;

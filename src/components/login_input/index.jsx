@@ -19,6 +19,8 @@ SubmitBtn = styled(LoginInput)`
         font-weight:bold;
         margin-top:.8rem;
         opacity:${props=>props.disabled && ".7"};
+        cursor:pointer;
+
 
     `;
 export {LoginInput,SubmitBtn};
