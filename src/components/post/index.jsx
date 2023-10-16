@@ -38,6 +38,20 @@ const Post = styled.div`
     UserName = styled.div`
 
 `,
+OptionsContainer = styled.div`
+    flex-grow:1;
+`,
+Option = styled.div`
+    width:.4rem;
+    height:.4rem;
+    background-color:#000000e3;
+    border-radius:50%;
+    margin-right:2%;
+`,
+Options = styled.div`
+display: flex;
+justify-content: flex-end;
+`,
     PostImage = styled.div`
     height:20rem;
     @media (min-width:1024px){
@@ -90,6 +104,8 @@ const Posts = () => {
                     </strong>
                     
                 </UserName>
+                
+            <OptionsContainer><Options><Option/><Option/><Option/></Options></OptionsContainer>
             </PostUser>
             <PostImage>
                 {

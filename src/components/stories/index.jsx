@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
 import STORIES from "../../stories";
 import StoriesContainer from "../stories-container";
+import { SwiperSlide } from "swiper/react";
+import { useEffect, useRef, useState } from "react";
+import WatchStory from "../watch-story";
 
 const StoryContainer = styled.figure`
     width:4rem;
@@ -9,16 +12,18 @@ const StoryContainer = styled.figure`
     position:relative;
     cursor:pointer;
     z-index:1;
-    &:after{
-        top: -4px;
-        left: -4px;
-        width: 4.5rem;
-        height: 4.5rem;
-        position: absolute;
-        content: "";
-        border-radius: 50%;
-        z-index: -1;
-        background-image: linear-gradient( to bottom left, #8a3ab9, #e95950 );
+    ${props => !props.$noBorder && `
+        &:after{
+            top: -4px;
+            left: -4px;
+            width: 4.5rem;
+            height: 4.5rem;
+            position: absolute;
+            content: "";
+            border-radius: 50%;
+            z-index: -1;
+            background-image: linear-gradient( to bottom left, #8a3ab9, #e95950 );
+        }`
     }
 `,
     StoryImage = styled.img`
@@ -71,26 +76,39 @@ const StoryContainer = styled.figure`
     }
 `;
 
-
 const Stories = () => {
-    const stories = STORIES.map((obj, index) => <StoryContainer key={index}>
-        <StoryImage src={obj.image} />
-        <StoryTitle>
-            {obj.title}
-        </StoryTitle>
-    </StoryContainer>);
+    const [watchStory,setWatchStory] = useState(false),
+    displayStory = ()=>{
+        setWatchStory(!watchStory)
+    };
+    const stories = STORIES.map((obj, index) => {
+        
+
+        return (
+        <SwiperSlide key={index}>
+            <StoryContainer  onClick={displayStory}>
+                <StoryImage src={obj.image} />
+                <StoryTitle>
+                    {obj.title}
+                </StoryTitle>
+            </StoryContainer>
+        </SwiperSlide>);
+    });
 
 
     return (
         <StoriesContainer>
-            <StoryContainer>
-                <StoryImage src="/no-photo.jpg" />
-                <StoryTitle>
-                    Tu historia
-                </StoryTitle>
-                <AddStory />
-            </StoryContainer>
+            <SwiperSlide>
+                <StoryContainer $noBorder >
+                    <StoryImage src="/no-photo.jpg" />
+                    <StoryTitle>
+                        Tu historia
+                    </StoryTitle>
+                    <AddStory />
+                </StoryContainer>
+            </SwiperSlide>
             {stories}
+           {watchStory && <WatchStory close={displayStory}/>}
         </StoriesContainer>);
 };
 export default Stories;

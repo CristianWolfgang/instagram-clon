@@ -14,11 +14,10 @@ const MainContainer = styled.div`
 StoriesContainer = styled.div`
     @media (min-width:768px){
         position:relative;
-        // top:2rem;
         border-bottom:1px solid var(--ig-stroke);
         left:10%;
     }
-    @media (min-width:1440px){
+    @media (min-width:1339px){
         left:25%;
     }
 `;
@@ -30,7 +29,6 @@ const Feed = ()=>{
     screenSize1440 = useMediaQuery({
         minWidth:1339
     });
-    console.log(screenSize768);
     return(
         <>
         
